@@ -21,7 +21,7 @@ export default function SignUpPage() {
                     <input type="text" placeholder="Email address" className="input input-bordered w-full max-w-xs" onChange={(event) => setUserEmail(event.target.value)}/>
                     <input type="password" placeholder="Password" className="input input-bordered w-full max-w-xs my-3" onChange={(event) => setUserPassword(event.target.value)}/>
                 </div>
-                <button className={`btn btn-wide btn-primary my-2 ${loginBtnLoading}`}>CREATE ACCOUNT</button>
+                <button className={`btn btn-wide btn-primary my-2 ${loginBtnLoading}`} disabled>coming soon</button>
                 {error && 
                     <>
                         <p className='text-red-600'>Invalid email or password.</p>

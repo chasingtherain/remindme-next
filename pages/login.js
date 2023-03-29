@@ -21,7 +21,8 @@ export default function LoginPage() {
                     <input type="text" placeholder="Email address" className="input input-bordered w-full max-w-xs" onChange={(event) => setUserEmail(event.target.value)}/>
                     <input type="password" placeholder="Password" className="input input-bordered w-full max-w-xs my-3" onChange={(event) => setUserPassword(event.target.value)}/>
                 </div>
-                <button className={`btn btn-wide btn-primary my-2 ${loginBtnLoading}`}>LOGIN</button>
+                {/* <button className={`btn btn-wide btn-primary my-2 ${loginBtnLoading}`}>LOGIN</button> */}
+                <button className={`btn btn-wide btn-primary my-2 ${loginBtnLoading}`} disabled>coming soon</button>
                 {error && 
                     <>
                         <p className='text-red-600'>Invalid email or password.</p>
@@ -33,7 +34,8 @@ export default function LoginPage() {
             </div>
             <div className="divider"></div>
             <div className="grid h-18 card rounded-box place-items-center">
-            <Link href="/signup" className="btn btn-wide btn" >Create an account</Link>
+            {/* <Link href="/signup" className="btn btn-wide btn" >Create an account</Link> */}
+            <Link href="/signup" className="btn btn-wide btn" disabled >coming soon</Link>
             <Link href="/" className="mt-2 hover:underline decoration-2 decoration-sky-500">Back to home</Link>
             </div>
         </div>

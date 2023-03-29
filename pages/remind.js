@@ -72,8 +72,8 @@ export default function RemindPage() {
                 // onChange={(date) => handleStartDateSelection(date)} estimate
             />
         </div>
-        <button type="submit" className={`btn text-white mt-4 px-28 text-center text-base font-semibold shadow-md rounded-lg mt-4 ${applyBtnLoading}`}>
-            Set Reminder
+        <button type="submit" disabled className={`btn text-white mt-4 px-28 text-center text-base font-semibold shadow-md rounded-lg mt-4 ${applyBtnLoading}`}>
+            coming soon
         </button>
     </form>
     </>
