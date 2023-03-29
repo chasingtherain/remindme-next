@@ -5,13 +5,13 @@ import HeroHome from '../components/landing/Hero';
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div className="">
       <Head>
         <title>Remind Me</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <main className='mt-48'>
         <HeroHome/>
       </main>
     </div>
