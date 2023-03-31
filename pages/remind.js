@@ -14,11 +14,11 @@ export default function RemindPage() {
     </Head>
     <form className="w-full flex flex-col justify-start items-center" onSubmit={""}>
         <div className='grid place-items-center'>
-            <p className='text-sky-700 text-3xl my-12'>Set an Email Reminder</p>
+            <p className='text-sky-600 text-3xl mt-12 font-bold tracking-tighter'>Set an Email Reminder</p>
         </div>
             
         <div className="my-1">
-            <label htmlFor="remarks" className="text-lg font-weight-900 label">Email Content</label>
+            <label htmlFor="remarks" className="text-lg font-weight-900 label mt-8">Email Content</label>
             <textarea 
                 id="remarks" 
                 className="py-2 px-4 placeholder-gray-400 border-slate-500 rounded-lg border-2" 
