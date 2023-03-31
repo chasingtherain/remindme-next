@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import moment from 'moment';
 import { useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,7 +8,14 @@ import "react-datepicker/dist/react-datepicker.css";
 export default function RemindPage() {
     const [applyBtnLoading, setApplyBtnLoading] = useState("")
     const [isLoading, setIsLoading] = useState("")
-    return <>
+    const [email, setEmail] = useState("")
+    const [selectedDate, setSelectedDate] = useState("")
+    const [startDate, setStartDate] = useState(new Date());
+    const date = new Date();
+    let currentDate = date.getDate()
+    console.log(currentDate)
+
+    return <>  
     <Head>
         <title>Send a Reminder</title>
         <link rel="icon" href="/favicon.ico" />
@@ -36,18 +44,18 @@ export default function RemindPage() {
                 type="email" 
                 className="input input-bordered border-black input-primary w-full max-w-xs" 
                 style={{ width:"350px" }} 
-                // value={""}
-                // onChange={(date) => handleStartDateSelection(date)} estimate
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
             />
         </div>
         <div className="my-1">
             <label htmlFor="" className="text-lg font-weight-900 -ml-1 label">On this date</label>
             <ReactDatePicker
                 dateFormat='dd MMM yyyy'
-                className='border-[1px] border-secondary w-80 h-12 rounded-md' 
-                selected={""} 
-                // minDate={moment().year(currentDate.getFullYear() - 1).dayOfYear(1)._d}
-                // onChange={(date) => handleStartDateSelection(date)} 
+                className='border-[1px] border-secondary w-80 h-12 pl-2 rounded-md' 
+                selected={startDate} 
+                onChange={(date) => setStartDate(date)}
+                minDate={startDate}
             />
         </div>
         <div className="my-1">
