@@ -1,9 +1,8 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import Link from 'next/link';
 import HeroHome from '../components/landing/Hero';
 
-export default function Home() {
+export default function Home({subtitle,textAnimation,title}) {
+
   return (
     <div className="">
       <Head>
@@ -12,8 +11,19 @@ export default function Home() {
       </Head>
 
       <main className='mt-48'>
-        <HeroHome/>
+        <HeroHome subtitle={subtitle} textAnimation={textAnimation} title={title}/>
       </main>
     </div>
   )
+}
+
+export async function getStaticProps(){
+  return {
+    props: {
+      textAnimation: ['Buy Eggs',2500,'Pick The Kids',2500,'Stretch My Legs',2500],             
+      subtitle: `Never forget things that matter to you again.`,
+      title: `Remind me to`
+
+    }
+  }
 }

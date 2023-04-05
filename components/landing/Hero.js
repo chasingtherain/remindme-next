@@ -2,19 +2,15 @@ import Link from 'next/link';
 import React from 'react';
 import { TypeAnimation } from 'react-type-animation';
 
-function HeroHome() {
+function HeroHome({subtitle,textAnimation,title}) {
 
   return (
     <div className="text-center px-12">
       <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter" data-aos="zoom-y-out">
-        Remind me to 
+        {title}
         <span className="block m7-10 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
           <TypeAnimation
-            sequence={[
-              'Buy Eggs', 2500,
-              'Pick The Kids', 2500, 
-              'Stretch My Legs', 2500, 
-            ]}
+            sequence={textAnimation}
             wrapper="span"
             cursor={true}
             speed={10}
@@ -24,7 +20,7 @@ function HeroHome() {
         </span>
       </h1>
         <p className="text-xl text-gray-600 my-8" data-aos="zoom-y-out" data-aos-delay="150">
-          Never forget things that matter to you again.
+          {subtitle}
         </p>
         <Link href="/remind" className="btn text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4" >
           Set an email reminder

@@ -4,6 +4,7 @@ import moment from 'moment';
 import { useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { TimePicker } from 'react-ios-time-picker';
 
 export default function RemindPage() {
     const [applyBtnLoading, setApplyBtnLoading] = useState("")
@@ -14,7 +15,12 @@ export default function RemindPage() {
     const date = new Date();
     let currentDate = date.getDate()
     console.log(currentDate)
+    const [value, setValue] = useState('10:00');
 
+    const onChange = (timeValue) => {
+       setValue(timeValue);
+    }
+ 
     return <>  
     <Head>
         <title>Send a Reminder</title>
@@ -60,25 +66,11 @@ export default function RemindPage() {
         </div>
         <div className="my-1">
             <label htmlFor="" className="text-lg font-weight-900 -ml-1 label">At this time</label>
-            <input 
-                id="" 
-                type="email" 
-                className="input input-bordered border-black input-primary w-full max-w-xs" 
-                style={{ width:"350px" }} 
-                // value={""}
-                // onChange={(date) => handleStartDateSelection(date)} estimate
-            />
+            <TimePicker onChange={onChange} value={value} />
         </div>
         <div className="my-1">
             <label htmlFor="" className="text-lg font-weight-900 -ml-1 label">Timezone</label>
-            <input 
-                id="" 
-                type="email" 
-                className="input input-bordered border-black input-primary w-full max-w-xs" 
-                style={{ width:"350px" }} 
-                // value={""}
-                // onChange={(date) => handleStartDateSelection(date)} estimate
-            />
+
         </div>
         <button type="submit" disabled className={`btn text-white mt-4 px-28 text-center text-base font-semibold shadow-md rounded-lg mt-4 ${applyBtnLoading}`}>
             coming soon
