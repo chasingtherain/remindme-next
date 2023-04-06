@@ -4,29 +4,53 @@ import moment from 'moment';
 import { useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { TimePicker } from 'react-ios-time-picker';
+import { toast } from "react-toastify";
+// import { TimePicker } from 'react-ios-time-picker';
 
 export default function RemindPage() {
     const [applyBtnLoading, setApplyBtnLoading] = useState("")
     const [isLoading, setIsLoading] = useState("")
     const [email, setEmail] = useState("")
+    const [emailContent, setEmailContent] = useState("")
     const [selectedDate, setSelectedDate] = useState("")
     const [startDate, setStartDate] = useState(new Date());
     const date = new Date();
     let currentDate = date.getDate()
-    console.log(currentDate)
     const [value, setValue] = useState('10:00');
 
     const onChange = (timeValue) => {
        setValue(timeValue);
     }
- 
+    const handleSubmitForm = (e) => {
+        e.preventDefault()
+        if(emailContent.length <= 5){
+            return toast.warning("content must be at least 5 characters")
+        }
+        // save content in object
+        const formContent = {
+            emailContent: emailContent,
+            recipientEmail: email,
+            selectedDate: selectedDate
+        }
+        // post content to /api/reminder
+        fetch('/api/reminder', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formContent),
+        })
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(('Error fetching data:', error)))
+        console.log("handleSubmit fx triggered")
+    }
     return <>  
     <Head>
         <title>Send a Reminder</title>
         <link rel="icon" href="/favicon.ico" />
     </Head>
-    <form className="w-full flex flex-col justify-start items-center" onSubmit={""}>
+    <form className="w-full flex flex-col justify-start items-center" onSubmit={handleSubmitForm}>
         <div className='grid place-items-center'>
             <p className='text-sky-600 text-3xl mt-12 font-bold tracking-tighter'>Set an Email Reminder</p>
         </div>
@@ -40,7 +64,7 @@ export default function RemindPage() {
                 name="comment" 
                 rows="4"
                 style={{width: "320px"}}
-                onChange={(e) => setRemarks(e.target.value)}
+                onChange={(e) => setEmailContent(e.target.value)}
             />
         </div>
         <div className="my-1">
@@ -59,21 +83,21 @@ export default function RemindPage() {
             <ReactDatePicker
                 dateFormat='dd MMM yyyy'
                 className='border-[1px] border-secondary w-80 h-12 pl-2 rounded-md' 
-                selected={startDate} 
-                onChange={(date) => setStartDate(date)}
+                selected={selectedDate} 
+                onChange={(date) => setSelectedDate(date)}
                 minDate={startDate}
             />
         </div>
-        <div className="my-1">
+        {/* <div className="my-1">
             <label htmlFor="" className="text-lg font-weight-900 -ml-1 label">At this time</label>
             <TimePicker onChange={onChange} value={value} />
-        </div>
-        <div className="my-1">
+        </div> */}
+        {/* <div className="my-1">
             <label htmlFor="" className="text-lg font-weight-900 -ml-1 label">Timezone</label>
 
-        </div>
-        <button type="submit" disabled className={`btn text-white mt-4 px-28 text-center text-base font-semibold shadow-md rounded-lg mt-4 ${applyBtnLoading}`}>
-            coming soon
+        </div> */}
+        <button type="submit" className={`btn text-white mt-4 px-28 text-center text-base font-semibold shadow-md rounded-lg mt-4 ${applyBtnLoading}`}>
+            Set Reminder
         </button>
     </form>
     </>
