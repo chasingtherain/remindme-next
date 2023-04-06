@@ -16,7 +16,8 @@ export default function SignUpPage() {
             userEmail:userEmail,
             userPassword:userPassword,
         }
-
+        console.log(userInfo)
+        
         // post content to /api/reminder
         fetch('/api/signup', {
             method: 'POST',
