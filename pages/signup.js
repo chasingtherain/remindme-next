@@ -8,6 +8,32 @@ export default function SignUpPage() {
     const [error, setError] = useState("")
     const [loginBtnLoading, setLoginBtnLoading] = useState("")
 
+    const handleSignUp = (e) => {
+        e.preventDefault()
+        // if(userEmail)
+        console.log("sign up triggered")
+        const userInfo = {
+            userEmail:userEmail,
+            userPassword:userPassword,
+        }
+
+        // post content to /api/reminder
+        fetch('/api/signup', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userInfo),
+        })
+            .then(res => {
+                // setUserEmail("")
+                // setUserPassword("")
+                return res.json()
+            })
+            .then(data => console.log("data: ", data))
+            .catch(error => console.log(('Error fetching data:', error)))
+    }
+
     return <>
         <Head>
             <title>Login</title>
@@ -18,10 +44,28 @@ export default function SignUpPage() {
             <div className="grid h-58 card rounded-box place-items-center my-1">
                 <h1 className="text-3xl my-12">Create an account</h1>
                 <div className="form-control w-full max-w-xs">
-                    <input type="text" placeholder="Email address" className="input input-bordered w-full max-w-xs" onChange={(event) => setUserEmail(event.target.value)}/>
-                    <input type="password" placeholder="Password" className="input input-bordered w-full max-w-xs my-3" onChange={(event) => setUserPassword(event.target.value)}/>
+                    <input 
+                        type="email" 
+                        placeholder="Email address" 
+                        className="input input-bordered w-full max-w-xs" 
+                        value={userEmail}
+                        onChange={(event) => setUserEmail(event.target.value)}
+                    />
+                    <input 
+                        type="password" 
+                        placeholder="Password" 
+                        className="input input-bordered w-full max-w-xs my-3"
+                        value={userPassword} 
+                        onChange={(event) => setUserPassword(event.target.value)}
+                    />
                 </div>
-                <button className={`btn btn-wide btn-primary my-2 ${loginBtnLoading}`} disabled>coming soon</button>
+                {/* <button className={`btn btn-wide btn-primary my-2 ${loginBtnLoading}`} disabled>coming soon</button> */}
+                <button 
+                    className={`btn btn-wide btn-primary my-2 ${loginBtnLoading}`}
+                    onClick={handleSignUp}
+                >
+                    Sign up
+                </button>
                 {error && 
                     <>
                         <p className='text-red-600'>Invalid email or password.</p>
