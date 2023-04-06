@@ -23,8 +23,11 @@ export default function RemindPage() {
     }
     const handleSubmitForm = (e) => {
         e.preventDefault()
-        if(emailContent.length <= 5){
-            return toast.warning("content must be at least 5 characters")
+        if(emailContent.length < 5){
+            return toast.warning("content must have at least 5 characters")
+        }
+        if(!selectedDate){
+            return toast.warning("Please select a date!")
         }
         // save content in object
         const formContent = {
@@ -40,7 +43,12 @@ export default function RemindPage() {
             },
             body: JSON.stringify(formContent),
         })
-            .then(res => res.json())
+            .then(res => {
+                res.json()
+                setEmailContent("")
+                setEmail("")
+                selectedDate(null)
+            })
             .then(data => console.log(data))
             .catch(error => console.log(('Error fetching data:', error)))
         console.log("handleSubmit fx triggered")
@@ -64,6 +72,7 @@ export default function RemindPage() {
                 name="comment" 
                 rows="4"
                 style={{width: "320px"}}
+                value={emailContent}
                 onChange={(e) => setEmailContent(e.target.value)}
             />
         </div>
