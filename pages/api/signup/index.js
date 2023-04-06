@@ -1,6 +1,5 @@
 function handler(req,res){
-    const userEmail = req.body.userEmail
-    const userPassword = req.body.userPassword
+    const {userEmail, userPassword} = req.body
     
     if (req.method !== 'POST') {
         res.status(405).send({ message: 'Only POST requests allowed' })

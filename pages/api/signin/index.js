@@ -1,7 +1,6 @@
 function handler(req,res){
     if (req.method !== 'POST') {
-        const userEmail = req.body.email
-        const userPassword = req.body.password
+        const {userEmail, userPassword} = req.body
 
         if(!userEmail){
             res.status(422).json({message:"Invalid email address"})
