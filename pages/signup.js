@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
+import { authenticateWithDb } from "../lib/auth";
 
 export default function SignUpPage() {
     const [userEmail, setUserEmail] = useState("")
@@ -19,20 +20,7 @@ export default function SignUpPage() {
         console.log(userInfo)
         
         // post content to /api/reminder
-        fetch('/api/signup', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(userInfo),
-        })
-            .then(res => {
-                // setUserEmail("")
-                // setUserPassword("")
-                return res.json()
-            })
-            .then(data => console.log("data: ", data))
-            .catch(error => console.log(('Error fetching data:', error)))
+        authenticateWithDb('/api/signup', userInfo)
     }
 
     return <>
