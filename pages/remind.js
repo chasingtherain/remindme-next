@@ -105,7 +105,7 @@ export default function RemindPage() {
             <label htmlFor="" className="text-lg font-weight-900 -ml-1 label">Timezone</label>
 
         </div> */}
-        <button type="submit" className={`btn text-white mt-4 px-28 text-center text-base font-semibold shadow-md rounded-lg mt-4 ${applyBtnLoading}`}>
+        <button type="submit" disabled className={`btn text-white mt-4 px-28 text-center text-base font-semibold shadow-md rounded-lg mt-4 ${applyBtnLoading}`}>
             Set Reminder
         </button>
     </form>
