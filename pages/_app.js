@@ -2,13 +2,12 @@ import Navbar from '../components/Navbar'
 import '../styles/globals.css'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Fragment } from 'react';
 import Head from 'next/head';
-
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 export default function App({ Component, pageProps }) {
     return <div theme-data="winter"> 
-      <Fragment>
+      <UserProvider>
         <Head>
           <title>Landing | Remind Me</title>
           <meta charSet="UTF-8"/>
@@ -20,6 +19,6 @@ export default function App({ Component, pageProps }) {
         <Navbar/>
         <Component {...pageProps} />
         <ToastContainer />
-      </Fragment>
+      </UserProvider>
     </div>
   }

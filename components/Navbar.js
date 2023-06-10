@@ -16,7 +16,7 @@ export default function Navbar() {
             <Link href="/" className="btn btn-ghost normal-case text-xl text-white">Remind Me</Link>
         </div>
         <div className="navbar-end">
-            <Link href="/signup" className="btn">Sign Up / Login</Link>
+            <Link href="/api/auth/login" className="btn">Sign Up / Login</Link>
         </div>
     </div>
   )
