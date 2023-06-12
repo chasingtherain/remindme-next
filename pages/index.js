@@ -6,7 +6,9 @@ import HeroHome from '../components/landing/Hero';
 export default function Home({subtitle,textAnimation,title, users}) {
 
   const { user, error, isLoading } = useUser();
-  console.log(users)
+  
+  console.log("process.env.AUTH0_BASE_URL, process.env.NODE_ENV: ", process.env.AUTH0_BASE_URL, process.env.NODE_ENV)
+
   if (isLoading) return <p>loading..</p>
   return (
     <div className="">
