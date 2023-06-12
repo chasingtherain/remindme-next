@@ -4,6 +4,7 @@ import HeroHome from '../components/landing/Hero';
 // import prisma from '../lib/prisma';
 
 export default function Home({subtitle,textAnimation,title, users}) {
+
   const { user, error, isLoading } = useUser();
   console.log(users)
   if (isLoading) return <p>loading..</p>
